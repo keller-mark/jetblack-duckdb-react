@@ -11,7 +11,9 @@ export type DuckDBContextProps = {
   error?: Error | string
   /** The progress; updated during instantiation. */
   progress?: InstantiationProgress
+  /** Should the database be instantiated? Initially, false. */
   instantiate?: boolean
+  /** Set the instantiate flag. */
   setInstantiate?: (instantiate: boolean) => void
 }
 
