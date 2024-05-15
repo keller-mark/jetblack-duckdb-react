@@ -11,6 +11,8 @@ export type DuckDBContextProps = {
   error?: Error | string
   /** The progress; updated during instantiation. */
   progress?: InstantiationProgress
+  instantiate?: boolean
+  setInstantiate?: (instantiate: boolean) => void
 }
 
 const DuckDBContext = createContext<DuckDBContextProps>({
