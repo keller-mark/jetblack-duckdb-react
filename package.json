@@ -1,15 +1,15 @@
 {
-  "name": "lazy-duckdb-react",
-  "version": "0.5.1",
+  "name": "use-duckdb",
+  "version": "0.0.1",
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "author": "Rob Blackbourn <rob.blackbourn@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/rob-blackbourn/jetblack-duckdb-react",
+  "homepage": "https://github.com/keller-mark/use-duckdb",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rob-blackbourn/jetblack-duckdb-react"
+    "url": "https://github.com/keller-mark/use-duckdb"
   },
   "scripts": {
     "dev": "vite",
@@ -45,16 +45,6 @@
     "typescript": "^5.2.2",
     "vite": "^5.1.0",
     "vite-plugin-dts": "^3.7.2"
-  },
-  "prettier": {
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "none",
-    "printWidth": 80,
-    "arrowParens": "avoid",
-    "bracketsSpacing": true,
-    "bracketSameLine": false
   },
   "files": [
     "dist"
