@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState, useRef } from 'react'
 
 import {
   AsyncDuckDB,
@@ -35,7 +35,8 @@ export default function DuckDB({
   config,
   children
 }: DuckDBProps) {
-  const [db, setDb] = useState<AsyncDuckDB>()
+  const dbRef = useRef<AsyncDuckDB>()
+  const [instantiate, setInstantiate] = useState(false);
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>()
   const [progress, setProgress] = useState<InstantiationProgress>()
@@ -45,14 +46,24 @@ export default function DuckDB({
   }
 
   useEffect(() => {
+    if (!instantiate) {
+      // The useDuckDB hook has not been used yet.
+      return;
+    }
+    if(dbRef.current) {
+      // The database was already loaded successfully.
+      return;
+    }
     instantiateDuckDB(bundles, config, logger, handleProgress)
-      .then(setDb)
+      .then((db) => {
+        dbRef.current = db;
+      })
       .catch(setError)
-      .finally(() => setLoading(false))
-  }, [logger, bundles, config])
+      .finally(() => setLoading(false));
+  }, [instantiate, logger, bundles, config])
 
   return (
-    <DuckDBContext.Provider value={{ db, loading, error, progress }}>
+    <DuckDBContext.Provider value={{ db: dbRef.current, loading, error, progress, instantiate, setInstantiate }}>
       {children}
     </DuckDBContext.Provider>
   )
